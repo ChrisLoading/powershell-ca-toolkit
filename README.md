@@ -17,7 +17,7 @@
 ```text
 project-root/
 ├── Client/
-│   ├── Add-HostsEntry.ps1
+|   ├── Add-HostsEntry.ps1
 |   └── Install-CARootCertificate.ps1
 ├── Server/
 |   ├── Export-CARootCertificate.ps1
