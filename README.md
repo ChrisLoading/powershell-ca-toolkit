@@ -1,8 +1,19 @@
 ﻿# Internal CA Toolkit (Windows) — Root CA / Server Cert / Client Trust
 
-這套腳本用於在內部網路建立 **Root CA（內部憑證授權單位）**，並簽發伺服器 HTTPS 憑證，最後讓內部 Client 信任該憑證鏈。
+## What This Toolkit Does
+
+- Create and manage a Root CA
+- Issue server certificates
+- Export and install CA certificates
+- Bootstrap client trust
+- Verify trusted root certificates
 
 > 適用情境：內部 IIS / 內網系統，使用 HTTPS，但沒有對外公開 CA 或公司內沒有 AD/企業 PKI。
+
+## What This Toolkit Is Not
+
+- A full PKI solution (no CRL, OCSP, or policy enforcement)
+- Tied to any specific organization or domain
 
 ## Overview
 
