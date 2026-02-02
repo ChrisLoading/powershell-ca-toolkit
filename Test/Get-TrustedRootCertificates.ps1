@@ -18,5 +18,6 @@ $certs = @(Get-ChildItem Cert:\LocalMachine\Root |
 $certs | Format-Table -AutoSize
 
 Write-Host "Total Corp-Root-CA certificates found: $(@($certs).Count)" -ForegroundColor Cyan
-Write-Host "Press any key to exit..." -ForegroundColor Yellow
-$null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+Write-Host ""
+Write-Host "Press any key to exit..."
+$null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown") 
