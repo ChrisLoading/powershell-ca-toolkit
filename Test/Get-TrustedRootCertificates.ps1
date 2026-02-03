@@ -1,5 +1,5 @@
-# --- self-elevate (As the head of the script) ---
-# 自動提權（不是系統管理員即以系統管理員重啟另一終端機, 並關閉原終端）
+# --- self-elevate (Just in case: Read ROOT certificates not necessary require admin) ---
+# 自動提權（以系統管理員重啟另一終端機, 並關閉原終端）
 if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()
 ).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
   $argsList = @(
