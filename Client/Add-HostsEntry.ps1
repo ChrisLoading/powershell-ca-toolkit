@@ -1,14 +1,14 @@
-# --- self-elevate (As the head of the script) ---
-# 自動提權（不是系統管理員就自我重啟）
-# if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()
-# ).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-#   $argsList = @(
-#     '-NoProfile','-ExecutionPolicy','Bypass',
-#     '-File',('"{0}"' -f $PSCommandPath)
-#   )
-#   Start-Process -FilePath 'powershell.exe' -ArgumentList $argsList -Verb RunAs
-#   exit
-# }
+# --- self-elevate (Add hosts/dns require admin) ---
+# 自動提權（以系統管理員重啟另一終端機, 並關閉原終端）
+if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()
+).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+  $argsList = @(
+    '-NoProfile','-ExecutionPolicy','Bypass',
+    '-File',('"{0}"' -f $PSCommandPath)
+  )
+  Start-Process -FilePath 'powershell.exe' -ArgumentList $argsList -Verb RunAs
+  exit
+}
 
 # --- main ---
 
@@ -49,10 +49,11 @@ if ($needUpdate) {
         }
     }
 
+    # flush DNS cache
     ipconfig /flushdns | Out-Null
-    Write-Host "hosts updated and DNS cache flushed." -ForegroundColor Green
+    Write-Host "Hosts updated and DNS cache flushed.`n" -ForegroundColor Green
 } else {
-    Write-Host "All entries already exist." -ForegroundColor Yellow
+    Write-Host "All entries already exist.`n" -ForegroundColor Yellow
 }
 
 # 驗證
@@ -60,5 +61,4 @@ Resolve-DnsName devops.corp.contoso.com
 Resolve-DnsName win2016
 Test-NetConnection devops.corp.contoso.com -Port 443
 Test-NetConnection win2016 -Port 443
-Read-Host 'Done. Press Enter to exit'
-
+Read-Host "`nCheck result. Press Enter to exit"
