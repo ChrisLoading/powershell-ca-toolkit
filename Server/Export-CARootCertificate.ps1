@@ -25,5 +25,4 @@ $cerPath = Join-Path $destDir 'Corp-Root-CA.cer'
 Export-Certificate -Cert $root -FilePath $cerPath -Force | Out-Null
 Write-Host "Exported Root public cert to: $cerPath"
 
-Pause
-# Read-Host "Press Enter to continue..."
+Read-Host "Press Enter to continue..."

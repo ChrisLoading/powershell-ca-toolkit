@@ -19,4 +19,4 @@ Write-Host "Trusted Root installed."
 $ok = Get-ChildItem Cert:\LocalMachine\Root | Where-Object Subject -eq 'CN=Corp-Root-CA'
 if ($ok) { Write-Host "Verify: Corp-Root-CA present in Trusted Root." } else { throw "Verify failed." }
 
-Pause
+Read-Host "Press Enter to continue..."
